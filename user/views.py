@@ -76,6 +76,7 @@ def signup(request):
 
 
 def user_profile(request, id):
+    myuser = Customer.objects.get(username=request.session['username'])
     user = UserProfile.objects.get(pk=id)
     form = UserProfileForm(request.POST or None, instance=user)
     print(user.first_name)
@@ -83,10 +84,11 @@ def user_profile(request, id):
         if form.is_valid():
             form.save()
 
-
     context = {
         'form': form,
-        'user': user
+        'user1': user,
+        'user': myuser,
+        'profile': request.session.get('username'),
     }
     return render(request, 'user/profile.htm', context)
 

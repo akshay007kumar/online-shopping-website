@@ -3,15 +3,15 @@
 {% block content %}
 {% include 'header_nav.htm' %}
 
-<div class="container mt-5" style="width: 800px;">
+<div class="container mt-5 mb-5 p-3" style="width: 900px; box-shadow: 2px 0px 10px grey; border-radius: 6px;">
 
-    <div class="bg-light ">
+    <div>
         <h2 class="display-4 bg-info text-light text-center" style="font-size: 2em;">Shipping Address</h2>
         <p>{{ address }}</p>
 
     </div>
 
-    <div class="bg-light">
+    <div>
         <h2 class="display-4 bg-info text-light text-center" style="font-size: 2em;">Payment Mode</h2>
         <p>
             <div class="radio">
@@ -35,4 +35,5 @@
     </div>
 </div>
 
+{% include 'footer.htm' %}
 {% endblock %}
