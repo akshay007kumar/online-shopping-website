@@ -1,0 +1,70 @@
+<div class="navbar navbar-expand-lg navbar-dark bg-dark " role="navigation">
+    <a class="navbar-brand" href="{% url 'products-page' %}">Shopper's Bay</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto" id="header-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:login' %}"></a>
+            </li>
+
+        </ul>
+        <form class="form-inline mt-2 mt-md-0" method="POST"> {% csrf_token %}
+            <input class="form-control mr-sm-2" type="text" placeholder="Search for product, brand or category"
+                aria-label="Search" style="width: 350px;" name="txtSearch">
+            <button class="btn btn-outline-success my-2 my-sm-0 mr-4" type="submit" name='btnSearch'>Search</button>
+        </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <ul class="navbar-nav" id="header-nav1">
+            {%if not profile %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:login' %}">Login</a>
+            </li>
+            {%endif%}
+            {% if profile %}
+            <div class="nav">
+                <div class="collapse navbar-collapse" id="profileNav">
+                    <ul class="navbar-nav category-nav">
+                        <li class="navbar-item dropdown ">
+                            <a href="." class="navbar-link dropdown-toggle text-light" id="dropdown1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="text-decoration: none;">
+
+                                {{profile}}
+
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                                <li class="dropdown-item">
+                                    <a href="{% url 'user:profile' user.id %}">Profile</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="">Orders</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="">Wishlist</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="{% url 'user:logout' %}">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                {%endif%}
+            </div>
+
+        </ul>
+        {% if profile %}
+        <a href="{% url 'cart' %}" class="btn btn-info  mr-5 ml-5">
+            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+            CART <span class="badge badge-danger">{{ cart_no }}</span>
+        </a>
+        {% endif %}
+    </div>
+
+</div>

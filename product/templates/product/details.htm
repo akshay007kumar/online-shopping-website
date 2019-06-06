@@ -1,0 +1,44 @@
+{% extends 'base.htm' %}
+{% load my_filters %}
+
+{% block head %}
+<title>Products</title>
+{% endblock head %}
+
+
+{% block content %}
+
+{% include 'header_nav.htm' %}
+{% include 'category_nav.htm' %}
+
+<div class="container-fluid ml-4">
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <img src="{{product.picture.url}}" alt="Image not loaded" width="400px;">
+
+        </div>
+        <div class="col-md-6 col-lg-8">
+            <div class="container ml-3">
+                <h4 class="">{{product.product_name}}</h4><br>
+                <p>{{product.product_desctiption}}</p>
+                <p class="text-success mt-3 text-weight-bold">
+                    &#8377; {{ product.unit_price|discount:10 }} &nbsp;
+                    <span style="text-decoration: line-through; color: grey;">
+                        &#8377; {{product.unit_price}}
+                    </span>
+                </p>
+                <div class="card-footer bg-white">
+                    <span style="font-weight: 600;" class="text-danger">
+                        {{product.discount}}% off
+                    </span>
+                    <a href="{% url 'add-to-cart' product.id %}" class="btn btn-info ml-2">Add to Cart</a>
+                    <a href="." class="btn btn-secondary ml-2">Add to Wishlist</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include 'footer.htm'  %}
+{% endblock %}

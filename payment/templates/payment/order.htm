@@ -1,0 +1,38 @@
+{% extends 'base.htm' %}
+
+{% block content %}
+{% include 'header_nav.htm' %}
+
+<div class="container mt-5" style="width: 800px;">
+
+    <div class="bg-light ">
+        <h2 class="display-4 bg-info text-light text-center" style="font-size: 2em;">Shipping Address</h2>
+        <p>{{ address }}</p>
+
+    </div>
+
+    <div class="bg-light">
+        <h2 class="display-4 bg-info text-light text-center" style="font-size: 2em;">Payment Mode</h2>
+        <p>
+            <div class="radio">
+                <label><input type="radio" name="optradio" checked>Debit Card</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio">Credit Card</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="optradio">Net Banking</label>
+            </div>
+            <div class="radio disabled">
+                <label><input type="radio" name="optradio" disabled>Paypal</label>
+            </div>
+        </p>
+
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'payment' %}" class="btn btn-success" style="width: 12em;">Confirm Order</a>
+    </div>
+</div>
+
+{% endblock %}

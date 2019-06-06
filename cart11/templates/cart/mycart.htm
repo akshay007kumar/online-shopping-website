@@ -1,0 +1,41 @@
+{% extends 'base.htm' %}
+{% load my_filters %}
+
+{% block content %}
+{% include 'header_nav.htm' %}
+
+<div class="container mt-5 mb-5">
+    <div style="width: 35em; margin: auto; margin-top: 10em; margin-bottom: 10em;">
+        <table class="table">
+            <thead class="bg-secondary text-light">
+                <th>Product</th>
+                <th>Cost</th>
+                <th>Edit</th>
+            </thead>
+            <tfoot>
+                <tr class=" bg-secondary text-light">
+                    <td>Total</td>
+                    <td style="font-weight: 700">{{ mycart.total }}</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+            {% for product in mycart.product.all %}
+            <tr>
+                <td> {{ product }} </td>
+                <td> {{ product.unit_price|discount:product.discount }} </td>
+                <td> <a href="{% url 'remove-from-cart' product.id %}"> Remove </a> </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'products-page' %}" class="btn btn-light" style="width: 12em;">&lt;&lt; Keep Shopping</a>
+            <a href="{% url 'order-summary' %}" class="btn btn-success" style="width: 12em;">Place Order</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% include 'footer.htm' %}
+{% endblock %}
