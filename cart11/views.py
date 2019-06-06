@@ -41,7 +41,7 @@ def add(request, id):
         mycart.product.add(Product.objects.get(pk=id))
         mycart.save()
 
-    return redirect('products-page')
+    return redirect('cart')
 
 
 def remove(request, id):
