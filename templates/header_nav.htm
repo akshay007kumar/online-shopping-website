@@ -26,45 +26,47 @@
             {%endif%}
             {% if profile %}
             <div class="nav">
-                <div class="collapse navbar-collapse" id="profileNav">
-                    <ul class="navbar-nav category-nav">
-                        <li class="navbar-item dropdown ">
-                            <a href="." class="navbar-link dropdown-toggle text-light" id="dropdown1"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="text-decoration: none;">
 
-                                {{profile}}
+                <li class="navbar-item dropdown ">
+                    <a href="." class="navbar-link dropdown-toggle text-light" id="dropdown1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style="text-decoration: none;">
 
-                            </a>
+                        {{profile}}
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                                <li class="dropdown-item">
-                                    <a href="{% url 'user:profile' user.id %}">Profile</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="">Orders</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="">Wishlist</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="{% url 'user:logout' %}">Logout</a>
-                                </li>
-                            </ul>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                        <li class="dropdown-item">
+                            <a href="{% url 'user:profile' user.id %}">Profile</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="">Orders</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="">Wishlist</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="{% url 'user:logout' %}">Logout</a>
                         </li>
                     </ul>
+                </li>
+                <li>
+                    {% if profile %}
+                    <a href="{% url 'cart' %}" class="btn btn-info  mr-5 ml-5">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        CART <span class="badge badge-danger">{{ cart_no }}</span>
+                    </a>
+                    {% endif %}
+                </li>
 
-                </div>
                 {%endif%}
+            </div>
+            <div class="nav">
+
             </div>
 
         </ul>
-        {% if profile %}
-        <a href="{% url 'cart' %}" class="btn btn-info  mr-5 ml-5">
-            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-            CART <span class="badge badge-danger">{{ cart_no }}</span>
-        </a>
-        {% endif %}
+
     </div>
 
 </div>
